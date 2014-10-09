@@ -76,7 +76,24 @@
     }];
 }
 
-- (void)isSessionValidWithToken:(EFacebookCallback)callBack
+-(void)logoutCallBack:(EFacebookCallback)callBack{
+
+    if (FBSession.activeSession.isOpen){
+        [FBSession.activeSession closeAndClearTokenInformation];
+        [FBSession setActiveSession:nil];
+    }
+    
+    NSHTTPCookieStorage* cookies = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    NSArray* facebookCookies = [cookies cookiesForURL:[NSURL URLWithString:@"https://facebook.com/"]];
+    
+    for (NSHTTPCookie* cookie in facebookCookies) {
+        [cookies deleteCookie:cookie];
+    }
+    
+    callBack(YES, @"Logout successfully");
+}
+
+- (void)isSessionValidReturnToken:(EFacebookCallback)callBack
 {
     if (!FBSession.activeSession.isOpen){
         
@@ -99,28 +116,115 @@
         callBack(NO,nil);
         
     }
-    
-
 }
 
+- (BOOL)isSessionValid
+{
+    if (!FBSession.activeSession.isOpen){
+        
+        if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded){
+            [FBSession.activeSession openWithCompletionHandler:^(FBSession *session,
+                                                                 FBSessionState status,
+                                                                 NSError *error) {
+                FBSession.activeSession = session;
+            }];
+        }
+    }
+    
+    return FBSession.activeSession.isOpen;
+}
+
+-(void)requestPublishPermissions:(EFacebookCallback)callBack{
+    
+    if ([self isSessionValid]) {
+        [FBSession.activeSession requestNewPublishPermissions:[NSArray arrayWithObject:@"publish_actions"]
+                                              defaultAudience:FBSessionDefaultAudienceFriends
+                                            completionHandler:^(FBSession *session, NSError *error) {
+                                                if (!error) {
+                                                    if ([FBSession.activeSession.permissions
+                                                         indexOfObject:@"publish_actions"] == NSNotFound){
+                                                        callBack(NO, @"Permission not granted");
+                                                    } else {
+                                                        if(callBack){
+                                                            callBack(YES,@"Granted");
+                                                        }
+                                                    }
+                                                    
+                                                } else {
+                                                    callBack(NO, error);
+                                                }
+                                            }];
+    }else{
+        callBack(NO, @"Not logged in");
+        return;
+    }
+    
+}
+
+-(void)checkForPublishPermissions:(EFacebookCallback)callBack{
+    
+    
+    [FBSession.activeSession refreshPermissionsWithCompletionHandler:^(FBSession *session, NSError *error) {
+        if (!error) {
+            FBSession.activeSession = session;
+            
+            if ([session hasGranted:@"publish_actions"]) {
+                if(callBack){
+                    callBack(YES,@"Have permissions");
+                }
+            }else{
+                callBack(NO, @"Don't have permissions");
+
+            }
+
+        }else{
+            callBack(NO, error);
+            
+        }
+    }];
+    
+}
 
 
 #pragma mark -
 #pragma mark - Public Methods
 
-+ (void)loginCallBack:(EFacebookCallback)callBack
-{
++ (void)loginCallBack:(EFacebookCallback)callBack{
+    
     [[EFacebookLogin sharedManager] loginCallBack:callBack];
 }
 
-+ (void)initWithPermissions:(NSArray *)permissions;
-{
++ (void)logoutCallBack:(EFacebookCallback)callBack{
+    
+    [[EFacebookLogin sharedManager] logoutCallBack:callBack];
+    
+}
+
++ (void)initWithPermissions:(NSArray *)permissions{
+    
     [[EFacebookLogin sharedManager] initWithPermissions:permissions];
 }
 
-+ (void)isSessionValidWithToken:(EFacebookCallback)callBack
-{
-     [[EFacebookLogin sharedManager] isSessionValidWithToken:callBack];
++ (BOOL)isSessionValid{
+    
+    return [[EFacebookLogin sharedManager] isSessionValid];
+}
+
++ (void)isSessionValidReturnToken:(EFacebookCallback)callBack{
+    
+    [[EFacebookLogin sharedManager] isSessionValidReturnToken:callBack];
+}
+
++ (void)requestPublishPermissions:(EFacebookCallback)callBack{
+    
+    [[EFacebookLogin sharedManager] requestPublishPermissions:callBack];
+    
+}
+
++(void)checkForPublishPermissions:(EFacebookCallback)callBack{
+    
+    [[EFacebookLogin sharedManager] checkForPublishPermissions:callBack];
+    
 }
 
 @end

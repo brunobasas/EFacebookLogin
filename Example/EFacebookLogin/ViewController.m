@@ -39,5 +39,36 @@
         }
     }];
 }
+- (IBAction)LogoutPressed:(id)sender {
+    
+    [EFacebookLogin logoutCallBack:^(BOOL success, id result) {
+        if (success) {
+            Alert(@"Alert", [result description]);
+        }
+    }];
+    
+}
+- (IBAction)PublishPermissionsPressed:(id)sender {
+    
+    [EFacebookLogin checkForPublishPermissions:^(BOOL success, id result) {
+        if (success) {
+            
+            Alert(@"Alert", @"Yoy already have permissions");
+
+        }else{
+            
+            [EFacebookLogin requestPublishPermissions:^(BOOL success, id result) {
+                if (success) {
+                    Alert(@"Alert", @"Publish permissions granted");
+                }else{
+                    Alert(@"Alert", [result description]);
+                }
+            }];
+        }
+    }];
+    
+
+
+}
 
 @end

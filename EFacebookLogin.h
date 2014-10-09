@@ -32,13 +32,38 @@ typedef void(^EFacebookCallback)(BOOL success, id result);
  */
 + (void)loginCallBack:(EFacebookCallback)callBack;
 /**
+ *  Facebook logout
+ *
+ * https://developers.facebook.com/docs/ios/graph
+ *
+ *  @param callBack (BOOL success, id result)
+ */
++ (void)logoutCallBack:(EFacebookCallback)callBack;
+/**
  *  Checks if there is an open session, if it is not checked if a token is created and returned there to validate session.
  *
- *  @return BOOL
+ *  @param callBack (BOOL success, id result)
  */
-+ (void)isSessionValidWithToken:(EFacebookCallback)callBack;
++ (void)isSessionValidReturnToken:(EFacebookCallback)callBack;
+
++ (BOOL)isSessionValid;
 
 + (void)initWithPermissions:(NSArray *)permissions;
+
+/**
+ *  Request publish permisions
+ *
+ *  @param callBack (BOOL success, id result)
+ */
++ (void)requestPublishPermissions:(EFacebookCallback)callBack;
+
+/**
+ *  Check for publish permisions
+ *
+ *  @param callBack (BOOL success, id result)
+ */
++(void)checkForPublishPermissions:(EFacebookCallback)callBack;
+
 
 
 @end

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,26 +20,93 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eR-Pp-ZbO">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Facebook Login">
+                                <state key="normal" title="Facebook login">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="5" y="169" width="395" height="50"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="40" y="137" width="320" height="50"/>
                                 </variation>
                                 <connections>
                                     <action selector="LoginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eAv-RN-1te"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4QZ-zr-HtY">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Facebook logout">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="40" y="225" width="320" height="50"/>
+                                </variation>
+                                <connections>
+                                    <action selector="LogoutPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VHZ-sm-Lf5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rbE-w2-LZL">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Request publish permissions">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="40" y="313" width="320" height="50"/>
+                                </variation>
+                                <connections>
+                                    <action selector="PublishPermissionsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hVN-cY-eOc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4QZ-zr-HtY" firstAttribute="top" secondItem="5eR-Pp-ZbO" secondAttribute="bottom" constant="8" id="BsX-fK-uXo">
+                                <variation key="heightClass=regular-widthClass=compact" constant="38"/>
+                            </constraint>
+                            <constraint firstItem="5eR-Pp-ZbO" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="115" id="H3K-1c-chQ">
+                                <variation key="heightClass=regular-widthClass=compact" constant="117"/>
+                            </constraint>
+                            <constraint firstItem="5eR-Pp-ZbO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="24" id="Jxt-LD-n8y"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="4QZ-zr-HtY" secondAttribute="trailing" constant="24" id="MvO-ma-i6u"/>
+                            <constraint firstItem="4QZ-zr-HtY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="24" id="W48-1U-RUx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5eR-Pp-ZbO" secondAttribute="trailing" constant="24" id="jTT-HR-zsw"/>
+                            <constraint firstItem="rbE-w2-LZL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="24" id="okv-47-kRI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rbE-w2-LZL" secondAttribute="trailing" constant="24" id="q3a-Tz-nHk"/>
+                            <constraint firstItem="rbE-w2-LZL" firstAttribute="top" secondItem="4QZ-zr-HtY" secondAttribute="bottom" constant="8" id="tt2-zL-YAZ">
+                                <variation key="heightClass=regular-widthClass=compact" constant="38"/>
+                            </constraint>
+                        </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="5eR-Pp-ZbO"/>
+                                <exclude reference="4QZ-zr-HtY"/>
+                                <exclude reference="rbE-w2-LZL"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="H3K-1c-chQ"/>
+                                <exclude reference="Jxt-LD-n8y"/>
+                                <exclude reference="jTT-HR-zsw"/>
+                                <exclude reference="BsX-fK-uXo"/>
+                                <exclude reference="MvO-ma-i6u"/>
+                                <exclude reference="W48-1U-RUx"/>
+                                <exclude reference="okv-47-kRI"/>
+                                <exclude reference="q3a-Tz-nHk"/>
+                                <exclude reference="tt2-zL-YAZ"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="5eR-Pp-ZbO"/>
+                                <include reference="4QZ-zr-HtY"/>
+                                <include reference="rbE-w2-LZL"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="H3K-1c-chQ"/>
+                                <include reference="Jxt-LD-n8y"/>
+                                <include reference="jTT-HR-zsw"/>
+                                <include reference="BsX-fK-uXo"/>
+                                <include reference="MvO-ma-i6u"/>
+                                <include reference="W48-1U-RUx"/>
+                                <include reference="okv-47-kRI"/>
+                                <include reference="q3a-Tz-nHk"/>
+                                <include reference="tt2-zL-YAZ"/>
                             </mask>
                         </variation>
                     </view>
