@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1512881619E69A7100FD0DC4 /* EFacebookLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1512881519E69A7100FD0DC4 /* EFacebookLogin.m */; };
+		1512881C19E69CAF00FD0DC4 /* EFacebookLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1512881B19E69CAF00FD0DC4 /* EFacebookLogin.m */; };
 		15D3E8F519E6915B00EFBD6F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D3E8F419E6915B00EFBD6F /* main.m */; };
 		15D3E8F819E6915B00EFBD6F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D3E8F719E6915B00EFBD6F /* AppDelegate.m */; };
 		15D3E8FB19E6915B00EFBD6F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D3E8FA19E6915B00EFBD6F /* ViewController.m */; };
@@ -18,8 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1512881419E69A7100FD0DC4 /* EFacebookLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EFacebookLogin.h; sourceTree = "<group>"; };
-		1512881519E69A7100FD0DC4 /* EFacebookLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EFacebookLogin.m; sourceTree = "<group>"; };
+		1512881A19E69CAF00FD0DC4 /* EFacebookLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EFacebookLogin.h; path = ../EFacebookLogin.h; sourceTree = "<group>"; };
+		1512881B19E69CAF00FD0DC4 /* EFacebookLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EFacebookLogin.m; path = ../EFacebookLogin.m; sourceTree = "<group>"; };
 		15D3E8EF19E6915B00EFBD6F /* EFacebookLogin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EFacebookLogin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15D3E8F319E6915B00EFBD6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15D3E8F419E6915B00EFBD6F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -50,8 +50,8 @@
 		15D3E8E619E6915B00EFBD6F = {
 			isa = PBXGroup;
 			children = (
-				1512881419E69A7100FD0DC4 /* EFacebookLogin.h */,
-				1512881519E69A7100FD0DC4 /* EFacebookLogin.m */,
+				1512881A19E69CAF00FD0DC4 /* EFacebookLogin.h */,
+				1512881B19E69CAF00FD0DC4 /* EFacebookLogin.m */,
 				15D3E8F119E6915B00EFBD6F /* Example */,
 				15D3E8F019E6915B00EFBD6F /* Products */,
 				D74AF7165417CDBBF18EDBB5 /* Pods */,
@@ -217,7 +217,7 @@
 				15D3E8FB19E6915B00EFBD6F /* ViewController.m in Sources */,
 				15D3E8F819E6915B00EFBD6F /* AppDelegate.m in Sources */,
 				15D3E8F519E6915B00EFBD6F /* main.m in Sources */,
-				1512881619E69A7100FD0DC4 /* EFacebookLogin.m in Sources */,
+				1512881C19E69CAF00FD0DC4 /* EFacebookLogin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
