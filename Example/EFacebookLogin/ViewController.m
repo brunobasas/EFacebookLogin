@@ -28,10 +28,8 @@
 }
 - (IBAction)LoginPressed:(id)sender {
     
-    [EFacebookLogin initWithPermissions:@[@"user_about_me",
-                                          @"email",]];
-    
-    [EFacebookLogin loginCallBack:^(BOOL success, id result) {
+    [EFacebookLogin loginWithPermissions:@[@"user_about_me",
+                                           @"email",] CallBack:^(BOOL success, id result) {
         if (success) {
             Alert(@"Alert", @"Success");
         }else{

@@ -20,8 +20,6 @@ typedef void(^EFacebookCallback)(BOOL success, id result);
 
 
 @property (strong, nonatomic) FBSession *session;
-@property (strong, nonatomic) NSArray *permissions;
-
 
 /**
  *  Facebook login
@@ -30,7 +28,7 @@ typedef void(^EFacebookCallback)(BOOL success, id result);
  *
  *  @param callBack (BOOL success, id result)
  */
-+ (void)loginCallBack:(EFacebookCallback)callBack;
++ (void)loginWithPermissions:(NSArray*)permissions CallBack:(EFacebookCallback)callBack;
 /**
  *  Facebook logout
  *
@@ -46,9 +44,11 @@ typedef void(^EFacebookCallback)(BOOL success, id result);
  */
 + (void)isSessionValidReturnToken:(EFacebookCallback)callBack;
 
+/**
+ *  Check if the sessions is valid. If not opens the session.
+ *
+ */
 + (BOOL)isSessionValid;
-
-+ (void)initWithPermissions:(NSArray *)permissions;
 
 /**
  *  Request publish permisions

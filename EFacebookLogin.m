@@ -43,15 +43,9 @@
 #pragma mark -
 #pragma mark - Private Methods
 
+- (void)loginWithPermissions:(NSArray*)permissions CallBack:(EFacebookCallback)callBack{
 
-- (void)initWithPermissions:(NSArray *)permissions
-{
-    self.permissions = permissions;
-}
-
-- (void)loginCallBack:(EFacebookCallback)callBack
-{
-    [FBSession openActiveSessionWithReadPermissions:self.permissions allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+    [FBSession openActiveSessionWithReadPermissions:permissions allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
         
         if (status == FBSessionStateOpen) {
             
@@ -189,20 +183,15 @@
 #pragma mark -
 #pragma mark - Public Methods
 
-+ (void)loginCallBack:(EFacebookCallback)callBack{
++ (void)loginWithPermissions:(NSArray*)permissions CallBack:(EFacebookCallback)callBack{
     
-    [[EFacebookLogin sharedManager] loginCallBack:callBack];
+    [[EFacebookLogin sharedManager] loginWithPermissions:permissions CallBack:callBack];
 }
 
 + (void)logoutCallBack:(EFacebookCallback)callBack{
     
     [[EFacebookLogin sharedManager] logoutCallBack:callBack];
     
-}
-
-+ (void)initWithPermissions:(NSArray *)permissions{
-    
-    [[EFacebookLogin sharedManager] initWithPermissions:permissions];
 }
 
 + (BOOL)isSessionValid{
