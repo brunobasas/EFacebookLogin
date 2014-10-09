@@ -7,6 +7,9 @@
 //
 
 #import "ViewController.h"
+#import "EFacebookLogin.h"
+#define Alert(title,msg)  [[[UIAlertView alloc] initWithTitle:title message:msg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
+
 
 @interface ViewController ()
 
@@ -22,6 +25,19 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)LoginPressed:(id)sender {
+    
+    [EFacebookLogin initWithPermissions:@[@"user_about_me",
+                                          @"email",]];
+    
+    [EFacebookLogin loginCallBack:^(BOOL success, id result) {
+        if (success) {
+            Alert(@"Alert", @"Success");
+        }else{
+            Alert(@"Alert", [result description]);
+        }
+    }];
 }
 
 @end

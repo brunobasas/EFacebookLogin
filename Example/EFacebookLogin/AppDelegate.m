@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "EFacebookLogin.h"
 
 @interface AppDelegate ()
 
@@ -41,5 +42,16 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+#pragma mark -
+#pragma mark - EFacebook Handle
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    BOOL wasHandled = [FBAppCall handleOpenURL:url
+                             sourceApplication:sourceApplication];
+    return wasHandled;
+}
+
 
 @end
