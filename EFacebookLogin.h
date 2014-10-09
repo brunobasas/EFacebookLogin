@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FacebookSDK.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 
 
@@ -31,7 +31,12 @@ typedef void(^EFacebookCallback)(BOOL success, id result);
  *  @param callBack (BOOL success, id result)
  */
 + (void)loginCallBack:(EFacebookCallback)callBack;
-
+/**
+ *  Checks if there is an open session, if it is not checked if a token is created and returned there to validate session.
+ *
+ *  @return BOOL
+ */
++ (void)isSessionValidWithToken:(EFacebookCallback)callBack;
 
 + (void)initWithPermissions:(NSArray *)permissions;
 

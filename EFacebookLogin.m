@@ -9,7 +9,6 @@
 #import "EFacebookLogin.h"
 
 
-
 @interface EFacebookLogin()
 
 + (EFacebookLogin *)sharedManager;
@@ -77,6 +76,32 @@
     }];
 }
 
+- (void)isSessionValidWithToken:(EFacebookCallback)callBack
+{
+    if (!FBSession.activeSession.isOpen){
+        
+        if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded){
+            [FBSession.activeSession openWithCompletionHandler:^(FBSession *session,
+                                                                 FBSessionState status,
+                                                                 
+                                                                 NSError *error) {
+                FBSession.activeSession = session;
+                
+            }];
+        }
+    }
+
+    if (FBSession.activeSession.isOpen){
+        if(callBack){
+            callBack(YES, FBSession.activeSession.accessTokenData.accessToken);
+        }
+    }else{
+        callBack(NO,nil);
+        
+    }
+    
+
+}
 
 
 
@@ -91,6 +116,11 @@
 + (void)initWithPermissions:(NSArray *)permissions;
 {
     [[EFacebookLogin sharedManager] initWithPermissions:permissions];
+}
+
++ (void)isSessionValidWithToken:(EFacebookCallback)callBack
+{
+     [[EFacebookLogin sharedManager] isSessionValidWithToken:callBack];
 }
 
 @end
